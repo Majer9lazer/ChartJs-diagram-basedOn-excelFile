@@ -65,7 +65,7 @@ namespace HighChartJsUsing.Controllers
         [HttpPost]
         public ActionResult FileUpload(HttpPostedFileBase excelFile)
         {
-            List<StudentExcelDiagram> studentExcelDiagrams = new List<StudentExcelDiagram>();
+            List<StudentExcelDiagram> studentExcelDiagrams;
             try
             {
                 string fileName = Path.GetFileName(excelFile.FileName);

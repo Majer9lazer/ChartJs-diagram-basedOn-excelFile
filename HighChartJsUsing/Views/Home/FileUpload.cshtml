@@ -90,94 +90,98 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script>
-        Highcharts.chart('containerForRussianDiagram', {
-            data: {
-                table: 'RussianDiagramTable'
-            },
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'Количественный состав обучающихся'
-            },
-            yAxis: {
-                allowDecimals: false,
-                title: {
-                    text: 'количество'
-                }
-            },
-            tooltip:
+        Highcharts.chart('containerForRussianDiagram',
             {
-                pointFormat: '{series.name}: {point.y}'
-            }, plotOptions: {
-                series: {
-                    borderWidth: 0,
-                    dataLabels: {
-                        enabled: true,
-                        format: '{point.y}'
+                data: {
+                    table: 'RussianDiagramTable'
+                },
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Количественный состав обучающихся'
+                },
+                yAxis: {
+                    allowDecimals: false,
+                    title: {
+                        text: 'количество'
+                    }
+                },
+                tooltip:
+                {
+                    pointFormat: '{series.name}: {point.y}'
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y}'
+                        }
                     }
                 }
-            }
-        });
-        Highcharts.chart('containerForKazakhDiagram', {
-            data: {
-                table: 'KazakhDiagramTable'
-            },
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'Білім алушылардың сандық құрамы'
-            },
-            yAxis: {
-                allowDecimals: false,
-                title: {
-                    text: 'количество'
-                }
-            },
-            tooltip:
+            });
+        Highcharts.chart('containerForKazakhDiagram',
             {
-                headerFormat: '<b>{point.x}</b><br/>',
-                pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
-            }, plotOptions: {
-                series: {
-                    borderWidth: 0,
-                    dataLabels: {
-                        enabled: true,
-                        format: '{point.y}'
+                data: {
+                    table: 'KazakhDiagramTable'
+                },
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Білім алушылардың сандық құрамы'
+                },
+                yAxis: {
+                    allowDecimals: false,
+                    title: {
+                        text: 'количество'
+                    }
+                },
+                tooltip:
+                {
+                    pointFormat: '{series.name}: {point.y}'
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y}'
+                        }
                     }
                 }
-            }
-        });
-        Highcharts.chart('containerForEnglishDiagram', {
-            data: {
-                table: 'EnglishDiagramTable'
-            },
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'Number of students'
-            },
-            yAxis: {
-                allowDecimals: false,
-                title: {
-                    text: 'количество'
-                }
-            },
-            tooltip:
+            });
+        Highcharts.chart('containerForEnglishDiagram',
             {
-                headerFormat: '<b>{point.x}</b><br/>',
-                pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
-            }, plotOptions: {
-                series: {
-                    borderWidth: 0,
-                    dataLabels: {
-                        enabled: true,
-                        format: '{point.y}'
+                data: {
+                    table: 'EnglishDiagramTable'
+                },
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Number of students'
+                },
+                yAxis: {
+                    allowDecimals: false,
+                    title: {
+                        text: 'количество'
+                    }
+                },
+                tooltip:
+                {
+                    pointFormat: '{series.name}: {point.y}'
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y}'
+                        }
                     }
                 }
-            }
-        });
+            });
     </script>
 }
