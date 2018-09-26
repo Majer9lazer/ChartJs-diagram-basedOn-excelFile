@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Статистика";
+
+}
+
+
+<div class="row">
+
+    @if (ViewBag.Message is string message)
+    {
+        <div class="col-sm-12 col-xs-12
+         @if (message.Length > 150)
+         {
+            @:col-md-12
+         }
+         else
+         {
+           @:col-md-6
+         }">
+            <h2>Загрузка файла</h2>
+            <div class="alert alert-warning alert-dismissible " role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Warning!</strong> <p >@message</p>
+            </div>
+        </div>
+    }
+
+</div>
+<div class="row">
+    <div class="col-xs-12 col-md-6">
+        @using (Html.BeginForm("FileUpload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="form-group">
+                <label class="control-label">Загрузите файл (.xlsx)</label>
+                <input type="file" name="excelFile" accept=".xlsx" />
+                <br>
+                <input type="submit" class="btn btn-success" value="Загрузить файл" />
+            </div>
+        }
+
+    </div>
+</div>
+<div class="row">
+    @using (Html.BeginForm("ShowDiagram", "Home", FormMethod.Post))
+    {
+        <div class="col-xs-12 col-sm-10 col-md-7">
+            <div class="form-group">
+                <label class="control-label">Если нет файла , можете просто просмотреть нажав на кнопку</label>
+                <button type="submit" class="btn btn-success">Просмотреть диаграммы</button>
+            </div>
+        </div>
+    }
+    <div class="col-xs-12 col-md-12">
+        <div class="thumbnail">
+            <h3>Пример таблицы</h3>
+            <img src="~/Files/ExcelDemo.PNG" alt="...">
+            <div class="caption">
+
+                <p>Вот как должны выглядеть таблица</p>
+            </div>
+        </div>
+    </div>
+</div>

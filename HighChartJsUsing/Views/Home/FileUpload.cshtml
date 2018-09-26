@@ -1,0 +1,183 @@
+﻿@using HighChartJsUsing.Models
+@using MoreLinq
+@model IEnumerable<HighChartJsUsing.Models.StudentExcelDiagram>
+@{
+    ViewBag.Title = "FileUpload";
+
+}
+
+<h2>Приветсвую на странице диаграмм</h2>
+<div id="containerForRussianDiagram" style="min-width: 640px; min-height: 480px; margin: 0 auto"></div>
+<div id="containerForKazakhDiagram" style="min-width: 640px; min-height: 480px; margin: 0 auto"></div>
+<div id="containerForEnglishDiagram" style="min-width: 640px; min-height: 480px; margin: 0 auto"></div>
+@if (Model != null)
+{
+    if (Model.Any())
+    {
+        <table id="RussianDiagramTable" style="display: none">
+            <thead>
+            <tr>
+                <th></th>
+                <th>бакалавриат</th>
+                <th>магистратура</th>
+                <th>докторорантура(Phd)</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (StudentExcelDiagram studentExcelDiagram in Model.DistinctBy(d => (d.FacultyRus)))
+            {
+                <tr>
+                    <th>@studentExcelDiagram.FacultyRus</th>
+                    @foreach (StudentExcelDiagram studentExcelDiagram1 in Model.Where(w => w.FacultyRus == studentExcelDiagram.FacultyRus).DistinctBy(d => d.LevelOfEducationRus))
+                    {
+                        <td>@studentExcelDiagram1.CountOfStudents</td>
+                    }
+                </tr>
+            }
+            </tbody>
+        </table>
+        <table id="KazakhDiagramTable" style="display: none">
+            <thead>
+            <tr>
+                <th></th>
+                <th>бакалавриат</th>
+                <th>магистратура</th>
+                <th>докторорантура(Phd)</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (StudentExcelDiagram studentExcelDiagram in Model.DistinctBy(d => (d.FacultyKaz)))
+            {
+                <tr>
+                    <th>@studentExcelDiagram.FacultyKaz</th>
+                    @foreach (StudentExcelDiagram studentExcelDiagram1 in Model.Where(w => w.FacultyKaz == studentExcelDiagram.FacultyKaz).DistinctBy(d => d.LevelOfEducationRus))
+                    {
+                        <td>@studentExcelDiagram1.CountOfStudents</td>
+                    }
+                </tr>
+            }
+            </tbody>
+        </table>
+        <table id="EnglishDiagramTable" style="display: none">
+            <thead>
+            <tr>
+                <th></th>
+                <th>bachelor’s degree</th>
+                <th>master’s degree</th>
+                <th>doctor's degree</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (StudentExcelDiagram studentExcelDiagram in Model.DistinctBy(d => (d.FacultyEn)))
+            {
+                <tr>
+                    <th>@studentExcelDiagram.FacultyEn</th>
+                    @foreach (StudentExcelDiagram studentExcelDiagram1 in Model.Where(w => w.FacultyEn == studentExcelDiagram.FacultyEn).DistinctBy(d => d.LevelOfEducationRus))
+                    {
+                        <td>@studentExcelDiagram1.CountOfStudents</td>
+                    }
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+
+}
+@section scripts
+{
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script>
+        Highcharts.chart('containerForRussianDiagram', {
+            data: {
+                table: 'RussianDiagramTable'
+            },
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Количественный состав обучающихся'
+            },
+            yAxis: {
+                allowDecimals: false,
+                title: {
+                    text: 'количество'
+                }
+            },
+            tooltip:
+            {
+                pointFormat: '{series.name}: {point.y}'
+            }, plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}'
+                    }
+                }
+            }
+        });
+        Highcharts.chart('containerForKazakhDiagram', {
+            data: {
+                table: 'KazakhDiagramTable'
+            },
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Білім алушылардың сандық құрамы'
+            },
+            yAxis: {
+                allowDecimals: false,
+                title: {
+                    text: 'количество'
+                }
+            },
+            tooltip:
+            {
+                headerFormat: '<b>{point.x}</b><br/>',
+                pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+            }, plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}'
+                    }
+                }
+            }
+        });
+        Highcharts.chart('containerForEnglishDiagram', {
+            data: {
+                table: 'EnglishDiagramTable'
+            },
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Number of students'
+            },
+            yAxis: {
+                allowDecimals: false,
+                title: {
+                    text: 'количество'
+                }
+            },
+            tooltip:
+            {
+                headerFormat: '<b>{point.x}</b><br/>',
+                pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+            }, plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}'
+                    }
+                }
+            }
+        });
+    </script>
+}
